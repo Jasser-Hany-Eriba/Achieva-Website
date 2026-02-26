@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achieva | The Arena of Synchronized Learning</title>
+    <link href="https://fonts.googleapis.com/css2?family=Delius+Swash+Caps&family=Sour+Gummy&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* --- Colors from your Battle Palette --- */
+            --beige-base: #f7f1e3;    /* Main Body Background */
+            --off-white: #faf9f6;     /* Text on dark sections */
+            --deep-blue: #1b4982;      /* Primary Action / Logo / Section Background */
+            --dark-cyan: #143750;      /* Secondary Section Background */
+            --beige-gold: #c69b4e;     /* Accent / Highlight / Points / Slogan color */
+            
+            /* UI colors derived from palette */
+            --text-main: var(--deep-blue);
+            --border-light: rgba(255, 255, 255, 0.1);
+            --border-dark: rgba(27, 73, 130, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--beige-base);
+            color: var(--text-main);
+            /* --- Main Body Font: Sour Gummy --- */
+            font-family: 'Sour Gummy', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            /* --- Title Font: Delius Swash Caps --- */
+            font-family: 'Delius Swash Caps', serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- UI Components --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, var(--deep-blue), var(--dark-cyan));
+            color: var(--off-white);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'Sour Gummy', sans-serif;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(27, 73, 130, 0.5);
+        }
+
+        /* --- Logo & Slogan Specific --- */
+        .logo {
+            font-size: 2rem;
+            color: var(--deep-blue);
+            font-weight: normal; /* Font style has its own character */
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-text {
+            color: var(--deep-blue);
+            /* Handled by Delius Swash Caps for the logo */
+        }
+
+        /* Reproducing the specific slogan style from image_1.png */
+        .slogan {
+            font-family: 'Sour Gummy', sans-serif;
+            font-size: 0.95rem;
+            margin-top: 5px;
+            color: var(--deep-blue);
+            white-space: nowrap; /* Prevents wrapping */
+        }
+        .slogan-highlight {
+            color: var(--beige-gold);
+        }
+
+        /* --- Navigation --- */
+        nav {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-dark);
+            background-color: var(--beige-base);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+        .nav-links a {
+            font-family: 'Sour Gummy', sans-serif;
+            color: var(--text-main);
+            margin-left: 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--beige-gold);
+        }
+
+        /* --- Hero --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 0.5rem;
+            color: var(--deep-blue);
+        }
+
+        .hero-logo-box {
+            text-align: center;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-slogan {
+            /* Reproducing the slogan on the hero */
+            color: var(--deep-blue);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-main);
+            max-width: 800px;
+            margin: 2rem 0;
+            font-family: 'Sour Gummy', sans-serif;
+        }
+
+        /* --- Section Styling --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            position: relative;
+            color: var(--deep-blue);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--beige-gold);
+            margin: 15px auto;
+        }
+
+        /* Add dark section style */
+        .dark-section {
+            background-color: var(--deep-blue);
+            color: var(--off-white);
+        }
+        .dark-section .section-title {
+            color: var(--off-white);
+        }
+        .dark-section p {
+            color: #ddd;
+        }
+        .dark-section .btn {
+            background: linear-gradient(90deg, var(--beige-gold), #b88b3d);
+            color: #444;
+        }
+        .dark-section .btn:hover {
+            box-shadow: 0 0 15px rgba(198, 155, 78, 0.5);
+        }
+        .dark-section .card {
+            border-color: var(--border-light);
+        }
+
+        /* --- Grid & Cards --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 2px solid var(--border-dark);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--beige-gold);
+            background: rgba(198, 155, 78, 0.05);
+        }
+
+        /* --- Leaderboard --- */
+        .leaderboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--glass);
+            padding: 30px;
+            border-radius: 8px;
+            border: 2px solid var(--border-dark);
+        }
+        .leaderboard-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: rgba(27, 73, 130, 0.05);
+            border-left: 5px solid var(--deep-blue);
+            transition: 0.3s;
+        }
+        .leaderboard-row:hover {
+            background: rgba(27, 73, 130, 0.1);
+        }
+
+        .rank { font-weight: bold; color: var(--beige-gold); margin-right: 15px; font-family: 'Delius Swash Caps'; font-size: 1.2rem; }
+        .points { color: var(--deep-blue); font-weight: bold; font-family: 'Delius Swash Caps'; font-size: 1.1rem; }
+
+        /* --- Shop --- */
+        .shop-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .shop-item-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--beige-gold);
+        }
+        .price-tag {
+            display: block;
+            margin: 20px 0;
+            font-size: 1.4rem;
+            color: var(--beige-gold);
+            font-family: 'Delius Swash Caps';
+        }
+
+        /* --- Animation --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s all ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; } /* Basic hidden for now */
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div class="logo-box">
+                <div class="logo">Achieva</div> <div class="slogan">Learn <span class="slogan-highlight">Long</span> . Achieve <span class="slogan-highlight">Strong</span></div> </div>
+            <div class="nav-links">
+                <a href="#schedule">Battle Arenas</a>
+                <a href="#leaderboard">Rankings</a>
+                <a href="#store">The Armory</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="hero">
+            <div class="hero-logo-box reveal">
+                <div class="hero-logo logo" style="font-size: 6rem;">Achieva</div>
+                <div class="hero-slogan slogan" style="font-size: 1.5rem;">Learn <span class="slogan-highlight">Long</span> . Achieve <span class="slogan-highlight">Strong</span></div>
+            </div>
+            <p class="reveal">Welcome to Achieva, where the grinds of solo studying are a thing of the past. The first synchronized learning ecosystem bringing high schoolers from the same grade together to battle through the same subjects at the same time and place.</p>
+            <div class="reveal">
+                <a href="#schedule" class="btn">Enter the Arena</a>
+            </div>
+        </header>
+    </div>
+
+    <section id="schedule" class="reveal dark-section">
+        <div class="container">
+            <h2 class="section-title">Live Battle Arenas</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Physics: Mechanics</h3>
+                    <p>Grade 12 | 4:00 PM Today</p>
+                    <p>📍 Downtown Hub - Arena 4B</p>
+                    <p style="font-size: 0.95rem; margin-top: 15px; color: var(--beige-gold); font-weight: bold;"></p>
+                </div>
+                <div class="card">
+                    <h3>Chemistry: Organic</h3>
+                    <p>Grade 11 | 6:30 PM Today</p>
+                    <p>📍 North Campus - Main Hall</p>
+                    <p style="font-size: 0.95rem; margin-top: 15px; color: var(--beige-gold); font-weight: bold;"></p>
+                </div>
+                <div class="card">
+                    <h3>Calculus: Limits</h3>
+                    <p>Grade 12 | 10:00 AM Tomorrow</p>
+                    <p>📍 Virtual Arena - Server 01</p>
+                    <p style="font-size: 0.95rem; margin-top: 15px; color: var(--beige-gold); font-weight: bold;"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leaderboard" class="reveal">
+        <div class="container">
+            <h2 class="section-title">Top Achievers Rankings</h2>
+            <div class="leaderboard-container">
+                <div class="leaderboard-row">
+                    <div><span class="rank">#1</span> Omar Al-Fayed</div>
+                    <div class="points">14,250 XP</div>
+                </div>
+                <div class="leaderboard-row">
+                    <div><span class="rank">#2</span> Sarah Jenkins</div>
+                    <div class="points">12,100 XP</div>
+                </div>
+                <div class="leaderboard-row" style="border-color: var(--beige-gold);">
+                    <div><span class="rank" style="color: var(--deep-blue);">#3</span> Youssef Karim</div>
+                    <div class="points" style="color: var(--beige-gold);">11,980 XP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="store" class="reveal dark-section">
+        <div class="container">
+            <h2 class="section-title">The Armory (Rewards)</h2>
+            <div class="grid">
+                <div class="card shop-card">
+                    <div class="shop-item-icon">🎓</div>
+                    <h3>Master Class Pass</h3>
+                    <p>Unlock 1-on-1 VIP Session</p>
+                    <span class="price-tag">5,000 Points</span>
+                    <button class="btn" style="padding: 10px 25px;">Redeem</button>
+                </div>
+                <div class="card shop-card">
+                    <div class="shop-item-icon">⚡</div>
+                    <h3>Focus Boost Kit</h3>
+                    <p>Premium Stationary & Gear</p>
+                    <span class="price-tag">3,500 Points</span>
+                    <button class="btn" style="padding: 10px 25px;">Redeem</button>
+                </div>
+                <div class="card shop-card">
+                    <div class="shop-item-icon">🛍️</div>
+                    <h3>Amazon Gift Card</h3>
+                    <p>$20 Digital Credit</p>
+                    <span class="price-tag">10,000 Points</span>
+                    <button class="btn" style="padding: 10px 25px;">Redeem</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 50px 0; border-top: 1px solid var(--border-dark); background-color: var(--beige-base); color: #888;">
+        <div class="container">
+            <div class="logo-box" style="margin-bottom: 20px;">
+                <div class="logo" style="font-size: 1.5rem; color: #888;">Achieva</div>
+                <div class="slogan" style="font-size: 0.85rem; color: #888;">Learn <span class="slogan-highlight" style="color: #aaa;">Long</span> . Achieve <span class="slogan-highlight" style="color: #aaa;">Strong</span></div>
+            </div>
+            <p style="font-family: 'Sour Gummy', sans-serif;">&copy; 2024 ACHIEVA ECOSYSTEM. THE ARENA IS OPEN. LEAVE NO STUDENT BEHIND.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Initial call
+        reveal();
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
